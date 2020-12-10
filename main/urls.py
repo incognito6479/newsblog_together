@@ -1,7 +1,8 @@
 from django.urls import path
-from django.http import HttpResponse
+from . import views
 
+app_name = 'main'
 
 urlpatterns = [
-
+    path('', views.index, name='index')
 ]
