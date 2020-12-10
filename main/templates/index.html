@@ -7,21 +7,22 @@
 
 {% block contnet %}
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card my-4">
-                  <h5 class="card-header">Featured</h5>
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="my-4">654</div>
-            </div>
+    {% for i in post %}
+        <div class="card my-4 mx-auto w-50 shadow-lg">
+          <h5 class="card-header d-flex">
+              <img src=""alt="img" class="mr-3">
+              <small>{{ i.author }}</small>
+          </h5>
+          <div class="card-body">
+            <h5 class="card-title">{{ i.title }}</h5>
+            <p class="card-text">{{ i.content }}</p>
+            <a href="#" class="btn btn-primary">Read</a>
+          </div>
+          <div class="card-footer">
+              <small>{{ i.post_added }}</small>
+          </div>
         </div>
+    {% endfor %}
     </div>
 {% endblock %}
 

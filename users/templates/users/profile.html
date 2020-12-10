@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mine.css' %}">
+{% endblock %}
+
+{% block contnet %}
+    <div class="container">
+    <div class="create_post my-4">
+        <div class="col-lg-6 offset-lg-3 d-flex flex-column align-items-center">
+            <img src="/{{ i.0.image }}" alt="img" style="width:100px;">
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.email }}</p>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/mine.js' %}"></script>
+{% endblock %}

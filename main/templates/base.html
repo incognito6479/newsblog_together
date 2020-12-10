@@ -27,7 +27,10 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">{{ user.username }}</a>
+                    <a class="nav-link text-white" href="{% url 'profile' %}">{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'main:create' %}">Create post</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>

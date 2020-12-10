@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mine.css' %}">
+{% endblock %}
+
+{% block contnet %}
+    <div class="container">
+    <div class="create_post my-4">
+        <div class="col-lg-6 offset-lg-3">
+            <h3 class="text-black-50 my-3">Create post</h3>
+            <form method="post" action="">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-info">Create</button>
+        </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/mine.js' %}"></script>
+{% endblock %}
