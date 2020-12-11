@@ -13,7 +13,7 @@
             <h3 class="text-black-50 my-3">Create post</h3>
             <form method="post" action="">
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ forms|crispy }}
             <button class="btn btn-info">Create</button>
         </form>
         </div>

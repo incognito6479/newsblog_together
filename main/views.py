@@ -1,19 +1,29 @@
 from django.shortcuts import render, redirect
-from . import models, forms
+from .forms import PostForm
+from .models import Posts
+from users.models import Profile
 
 
 def index(request):
-    posts = models.Posts.objects.order_by('-post_added')
-    return render(request, 'index.html', {'post': posts})
+    posts = Posts.objects.order_by('-post_added')
+    prof_pics = Profile.objects.all()
+    context = {
+        'post': posts,
+        'pics': prof_pics
+    }
+    return render(request, 'index.html', context)
 
 
 def create_post(request):
     if request.method == 'POST':
-        form = forms.PostForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
+        form_user = PostForm(request.POST)
+        if form_user.is_valid():
+            user = form_user.save(commit=False)
             user.author = request.user
             user.save()
             return redirect('main:index')
-    form = forms.PostForm()
-    return render(request, 'post_create.html', {'form':form})
+    form_user = PostForm()
+    context = {
+        'forms': form_user
+    }
+    return render(request, 'post_create.html', context)

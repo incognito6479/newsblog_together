@@ -9,12 +9,46 @@
 
 {% block contnet %}
     <div class="container">
-    <div class="create_post my-4">
-        <div class="col-lg-6 offset-lg-3 d-flex flex-column align-items-center">
-            <img src="/{{ i.0.image }}" alt="img" style="width:100px;">
-            <h2>{{ user.username }}</h2>
-            <p>{{ user.email }}</p>
+    <div class="row">
+        <div class="create_post m-5 col-lg-5 shadow-lg py-5">
+            <div class="col-lg-6 offset-lg-3 d-flex flex-column align-items-center">
+                <h3 class="text-black-50">User Profile</h3>
+                <img src="/{{ i.0.image }}" alt="img" style="width:200px; height:200px; border-radius: 50%;">
+                <h2 class="text-black-50 my-3">{{ user.username }}</h2>
+                <p>{{ user.email }}</p>
+            </div>
         </div>
+        <div class="col-lg-5">
+            <div class="form_edit my-5">
+                <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ profile|crispy }}
+                    {{ img_profile|crispy }}
+                    <button class="btn btn-info my-3">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="user_posts">
+        {% for i in posts %}
+        <div class="card my-4 mx-auto w-50 shadow-lg">
+          <h5 class="card-header d-flex">
+              <img src="" alt="img" class="mr-3">
+              <small>{{ i.author }}</small>
+          </h5>
+          <div class="card-body">
+            <h5 class="card-title">{{ i.title }}</h5>
+            <p class="card-text">{{ i.content }}</p>
+            <a href="#" class="btn btn-primary">Read</a>
+          </div>
+          <div class="card-footer">
+              <small>{{ i.post_added }}</small>
+              <a href="#" class="btn text-success">Edit</a>
+              <a href="#" class="btn text-danger">Delete</a>
+          </div>
+        </div>
+    {% endfor %}
     </div>
     </div>
 {% endblock %}
